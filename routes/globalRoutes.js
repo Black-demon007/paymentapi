@@ -171,6 +171,11 @@ router.post('/getIdRequestById', verifyToken, idRequestController.getIdRequestsB
 router.post('/updateIdRequest', verifyToken, idRequestController.updateIdRequest);
 router.post('/deleteIdRequest', verifyToken, idRequestController.deleteIdRequest);
 
+router.post('/createItr', verifyToken, itrController.createItr);
+router.post('/getItrs', verifyToken, itrController.getItrs);
+router.post('/getItrById', verifyToken, itrController.getItrById);
+router.post('/updateItr', verifyToken, itrController.updateItr);
+router.post('/deleteItr', verifyToken, itrController.deleteItr);
 
 // Check if all controllers are defined
 const controllers = {
