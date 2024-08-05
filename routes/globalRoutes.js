@@ -165,6 +165,12 @@ router.post('/getIdmasterById', verifyToken, idMasterController.getIdmasterById)
 router.post('/updateIdmaster', verifyToken, idMasterController.updateIdmaster);
 router.post('/deleteIdmaster', verifyToken, idMasterController.deleteIdmaster);
 
+router.post('/createIdRequest', verifyToken, idRequestController.createIdRequest);
+router.post('/getIdRequests', verifyToken, idRequestController.getIdRequests);
+router.post('/getIdRequestById', verifyToken, idRequestController.getIdRequestsById);
+router.post('/updateIdRequest', verifyToken, idRequestController.updateIdRequest);
+router.post('/deleteIdRequest', verifyToken, idRequestController.deleteIdRequest);
+
 
 // Check if all controllers are defined
 const controllers = {
