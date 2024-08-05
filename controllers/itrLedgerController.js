@@ -1,11 +1,11 @@
-const ItrLedger = require('../models/ItrLedgerModel');
+const { ItrLedger } = require('../models/itrLedgerModel');
 
-exports.createItrledger = async (req, res) => {
+exports.createItrLedger = async (req, res) => {
     try {
-        const saveditrLedger = new ItrLedger(req.body);
-        await saveditrLedger.save();
+        const savedItrLedger = new ItrLedger(req.body);
+        await savedItrLedger.save();
         return res.send({
-            data: saveditrLedger,
+            data: savedItrLedger,
             message: "ITR Ledger Created Successfully",
             status: true
         });
@@ -14,7 +14,7 @@ exports.createItrledger = async (req, res) => {
     }
 };
 
-exports.getItrledgers = async (req, res) => {
+exports.getItrLedgers = async (req, res) => {
     try {
         const itrLedgers = await ItrLedger.find();
         return res.send({
@@ -27,7 +27,7 @@ exports.getItrledgers = async (req, res) => {
     }
 };
 
-exports.getItrledgerById = async (req, res) => {
+exports.getItrLedgerById = async (req, res) => {
     try {
         const itrLedger = await ItrLedger.findById(req.query.id);
         if (!itrLedger) {
@@ -48,18 +48,17 @@ exports.getItrledgerById = async (req, res) => {
     }
 };
 
-exports.updateItrledger = async (req, res) => {
+exports.updateItrLedger = async (req, res) => {
     try {
-        const updateitrLedger = await ItrLedger.findByIdAndUpdate(req.query.id, req.body, { new: true });
-        if (!updateitrLedger) {
+        const updateItrLedger = await ItrLedger.findByIdAndUpdate(req.query.id, req.body, { new: true });
+        if (!updateItrLedger) {
             return res.send({
                 message: "No Record Found",
                 status: true
             });
-        }
-        else {
+        } else {
             return res.send({
-                data: updateitrLedger,
+                data: updateItrLedger,
                 message: "ITR Ledger Updated Successfully",
                 status: true
             });
@@ -69,17 +68,17 @@ exports.updateItrledger = async (req, res) => {
     }
 };
 
-exports.deleteItrledger = async (req, res) => {
+exports.deleteItrLedger = async (req, res) => {
     try {
-        const deleteitrLedger = await ItrLedger.findByIdAndDelete(req.query.id);
-        if (!deleteitrLedger) {
+        const deleteItrLedger = await ItrLedger.findByIdAndDelete(req.query.id);
+        if (!deleteItrLedger) {
             return res.send({
                 message: "No Record Found",
                 status: true
             });
         } else {
             return res.send({
-                data: deleteitrLedger,
+                data: deleteItrLedger,
                 message: "ITR Ledger Deleted Successfully",
                 status: true
             });
