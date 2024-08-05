@@ -147,6 +147,11 @@ router.post('/getFundrequestById', verifyToken, fundrequestController.getFundReq
 router.post('/updateFundrequest', verifyToken, fundrequestController.updateFundRequest);
 router.post('/deleteFundrequest', verifyToken, fundrequestController.deleteFundRequest);
 
+router.post('/createGallery', verifyToken, galleryController.createGallery);
+router.post('/getGalleries', verifyToken, galleryController.getGalleries);
+router.post('/getGalleryById', verifyToken, galleryController.getGalleryById);
+router.post('/updateGallery', verifyToken, galleryController.updateGallery);
+router.post('/deleteGallery', verifyToken, galleryController.deleteGallery);
 
 // Check if all controllers are defined
 const controllers = {
