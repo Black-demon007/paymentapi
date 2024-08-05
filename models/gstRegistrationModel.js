@@ -24,7 +24,9 @@ const GstRegistrationSchema = new mongoose.Schema({
     Narration: String,
     Charge: String,
     Status: String,
-}, {timestamps : true});
+}, {timestamps: true});
 
-module.exports = mongoose.model('GstRegistration', GstRegistrationSchema);
-module.exports = GstRegistrationSchema;
+const GstRegistration = mongoose.model('GstRegistration', GstRegistrationSchema);
+
+module.exports = { GstRegistration, GstRegistrationSchema };
+
