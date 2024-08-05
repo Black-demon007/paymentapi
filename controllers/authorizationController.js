@@ -4,27 +4,26 @@ const jwt = require('jsonwebtoken');
 
 exports.userSignup = async (req, res) => {
     const { mobile, emailId, memberId, joinerId, joinerName, type, package, firstName, middleName, lastName, dob, block, mohalla, shopName, idProof, addressProof, shopPhoto, shopType,
-        qualification, population, locationType, location, landLine, aepsStatus, country, state, district, city, landmark, pincode, address, aadharnumber,  pannumber, password,  permission, 
-        aadharImage,  pancardImage, passbookImage, userPhoto, formImage, status, narration, userCode } = req.body;
+        qualification, population, locationType, location, landLine, aepsStatus, country, state, district, city, landmark, pincode, address, aadharnumber, pannumber, password, permission,
+        aadharImage, pancardImage, passbookImage, userPhoto, formImage, status, narration, userCode } = req.body;
 
     try {
         let existingMobile = await Member.findOne({ mobile });
         let existingEmail = await Member.findOne({ emailId });
-        
-        if (existingUser) {
-            return res.send({
+
+        if (existingMobile) {
+            return res.status(400).json({
                 data: existingMobile,
                 message: "This Mobile Number Is Already Registered",
                 status: true
             });
-        } else if(existingEmail){
-            return res.send({
-                data: existingMobile,
+        } else if (existingEmail) {
+            return res.status(400).json({
+                data: existingEmail,
                 message: "This Email Is Already Registered",
                 status: true
             });
-        }
-        else {
+        } else {
             const salt = await bcrypt.genSalt();
             const passwordHash = await bcrypt.hash(password, salt);
             let newUser = await Member.create({
@@ -41,41 +40,41 @@ exports.userSignup = async (req, res) => {
                 dob,
                 block,
                 mohalla,
-                shopName, 
-                idProof, 
-                addressProof, 
-                shopPhoto, 
+                shopName,
+                idProof,
+                addressProof,
+                shopPhoto,
                 shopType,
-                qualification, 
-                population, 
-                locationType, 
-                location, 
-                landLine, 
-                aepsStatus, 
-                country, 
-                state, 
-                district, 
-                city, 
-                landmark, 
-                pincode, 
-                address, 
-                aadharnumber, 
+                qualification,
+                population,
+                locationType,
+                location,
+                landLine,
+                aepsStatus,
+                country,
+                state,
+                district,
+                city,
+                landmark,
+                pincode,
+                address,
+                aadharnumber,
                 pannumber,
-                password: passwordHash,  
-                permission, 
-                aadharImage, 
-                pancardImage, 
-                passbookImage, 
-                userPhoto, 
-                formImage, 
-                status, 
-                narration, 
+                password: passwordHash,
+                permission,
+                aadharImage,
+                pancardImage,
+                passbookImage,
+                userPhoto,
+                formImage,
+                status,
+                narration,
                 userCode
             });
 
             const token = jwt.sign({ user_id: newUser._id, mobile }, process.env.TOKEN_KEY);
             newUser.token = token;
-            return res.send({
+            return res.status(201).json({
                 data: newUser,
                 message: "You Are Registered Successfully",
                 status: true
@@ -87,26 +86,25 @@ exports.userSignup = async (req, res) => {
 }
 
 exports.userLogin = async (req, res) => {
-    const { mobile, password } = req.body
+    const { mobile, password } = req.body;
 
     try {
-        const result = await Member.findOne({ mobile: mobile })
-        if (!!result) {
-            let isPasswordValid = await bcrypt.compare(password, result.password)
-            if (!!isPasswordValid) {
-                const token = jwt.sign({ user_id: result?._id, mobile }, process.env.TOKEN_KEY);
-                const deepCopy = JSON.parse(JSON.stringify(result))
-                deepCopy.token = token
-                delete deepCopy.password
-                res.send({
-                    data: deepCopy,
+        const result = await Member.findOne({ mobile });
+        if (result) {
+            let isPasswordValid = await bcrypt.compare(password, result.password);
+            if (isPasswordValid) {
+                const token = jwt.sign({ user_id: result._id, mobile }, process.env.TOKEN_KEY);
+                const userData = { ...result.toObject(), token };
+                delete userData.password;
+                res.status(200).json({
+                    data: userData,
                     status: true
-                })
+                });
             } else {
-                res.status(403).json({ status: false, error: "Given Credentials Does Not Exists" })
+                res.status(403).json({ status: false, error: "Invalid Credentials" });
             }
         } else {
-            res.status(403).json({ status: false, error: "Given Credentials Does Not Exists" })
+            res.status(403).json({ status: false, error: "User Not Found" });
         }
     } catch (error) {
         res.status(500).json({ status: false, error: error.message });
@@ -115,15 +113,14 @@ exports.userLogin = async (req, res) => {
 
 exports.checkAdmin = async (req, res) => {
     try {
-        const result = await Member.findOne({ memberId : 'Admin' });
+        const result = await Member.findOne({ memberId: 'Admin' });
         if (result) {
             const membersCount = await Member.countDocuments();
-            return res.json({ count: membersCount });
+            return res.status(200).json({ count: membersCount });
         } else {
-            return res.json({ count: 0 });
+            return res.status(200).json({ count: 0 });
         }
     } catch (error) {
-        res.status(403).json({ status: false, error: error });
+        res.status(500).json({ status: false, error: error.message });
     }
 };
-
