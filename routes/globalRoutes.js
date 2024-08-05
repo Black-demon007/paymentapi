@@ -3,6 +3,7 @@ const verifyToken = require('../utils/verifyToken.js');
 const upload = require('../utils/uploadDocument.js');
 
 // Import controllers
+const documentController = require('../controllers/documentController.js');
 const authorizationController = require('../controllers/authorizationController.js');
 const memberController = require('../controllers/memberController.js');
 const aepscomissionController = require('../controllers/aepscomissionController.js');
