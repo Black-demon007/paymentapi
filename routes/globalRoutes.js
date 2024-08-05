@@ -2,544 +2,198 @@ const express = require('express');
 const verifyToken = require('../utils/verifyToken.js');
 const upload = require('../utils/uploadDocument.js');
 
-const {
-  uploadDocument
-} = require('../controllers/documentController.js');
-
-const {
- userSignup,
- userLogin,
- checkAdmin
-} = require('../controllers/authorizationController.js');
-
-const {
-  createMember,
-  getMembers,
-  getMemberById,
-  updateMember,
-  deleteMember,
-  getMemberuniqueId
-} = require('../controllers/memberController.js');
-
-const {
-  createAepscomission,
-  getAepscomission,
-  getAepscomissionById,
-  updateAepscomission,
-  deleteAepscomission
-} = require('../controllers/aepscomissionController.js');
-
-const {
-  createAepswallet,
-  getAepswallet,
-  getAepswalletById,
-  updateAepswallet,
-  deleteAepswallet
-} = require('../controllers/aepswalletController.js');
-
-const {
-  createBalance,
-  getBalance,
-  getBalanceById,
-  updateBalance,
-  deleteBalance
-} = require('../controllers/balanceController.js');
-
-//const {
- // createBalanceledger,
- // getBalanceledger,
- // getBalanceledgerById,
- // updateBalanceledger,
-//  deleteBalanceledger
-//} = require('../controllers/balanceLedgerController.js');
-
-const {
-  createBank,
-  getBanks,
-  getBankById,
-  updateBank,
-  deleteBank
-} = require('../controllers/bankController.js');
-
-const {
-  createBankSetting,
-  getBankSettings,
-  getBankSettingById,
-  updateBankSetting,
-  deleteBankSetting
-} = require('../controllers/bankSettingController.js');
-
-const {
-  createCompany,
-  getCompanies,
-  getCompanyById,
-  updateCompany,
-  deleteCompany
-} = require('../controllers/companyController.js');
-
-const {
-  createContactUs,
-  getContactUs,
-  getContactUsById,
-  updateContactUs,
-  deleteContactUs
-} = require('../controllers/contactusController.js');
-
-const {
-  createDistrict,
-  getDistricts,
-  getDistrictById,
-  updateDistrict,
-  deleteDistrict
-} = require('../controllers/districtController.js');
-
-const {
-  createDmrs,
-  getDmrs,
-  getDmrsById,
-  updateDmrs,
-  deleteDmrs
-} = require('../controllers/dmrsController.js');
-
-const {
-  createEmployee,
-  getEmployees,
-  getEmployeeById,
-  updateEmployee,
-  deleteEmployee
-} = require('../controllers/employeeController.js');
-
-const {
-  createEpfo,
-  getEpfos,
-  getEpfoById,
-  updateEpfo,
-  deleteEpfo
-} = require('../controllers/epfoController.js');
-
-const {
-  createEpfoledger,
-  getEpfoledgers,
-  getEpfoledgerById,
-  updateEpfoledger,
-  deleteEpfoledger
-} = require('../controllers/epfoledgerController.js');
-
-const {
-  createException,
-  getExceptions,
-  getExceptionById,
-  updateException,
-  deleteException
-} = require('../controllers/exceptionController.js');
-
-const {
-  createFundRequest,
-  getFundRequests,
-  getFundRequestById,
-  updateFundRequest,
-  deleteFundRequest
-} = require('../controllers/fundrequestController.js');
-
-const {
-  createGallery,
-  getGalleries,
-  getGalleryById,
-  updateGallery,
-  deleteGallery
-} = require('../controllers/galleryController.js');
-
-const {
-  createGstledger,
-  getGstledgers,
-  getGstledgerById,
-  updateGstledger,
-  deleteGstledger
-} = require('../controllers/gstledgerController.js');
-
-const {
-  createGstregistration,
-  getGstregistrations,
-  getGstregistrationById,
-  updateGstregistration,
-  deleteGstRegistration
-} = require('../controllers/gstRegistrationController.js');
-
-const {
-  createIdmaster,
-  getIdmasters,
-  getIdmasterById,
-  updateIdmaster,
-  deleteIdmaster
-} = require('../controllers/idMasterController.js');
-
-const {
-  createIdRequest,
-  getIdRequests,
-  getIdRequestsById,
-  updateIdRequest,
-  deleteIdRequest
-} = require('../controllers/idRequestController.js');
-
-const {
-  createItr,
-  getItrs,
-  getItrById,
-  updateItr,
-  deleteItr
-} = require('../controllers/itrController.js');
-
-const {
-  createItrledger,
-  getItrledgers,
-  getItrledgerById,
-  updateItrledger,
-  deleteItrledger
-} = require('../controllers/itrLedgerController.js');
-
-const {
-  createLoginhistory,
-  getLoginhistories,
-  getLoginhistoryById,
-  updateLoginhistory,
-  deleteLoginhistory
-} = require('../controllers/loginHistoryController.js');
-
-const {
-  createMainwalletledger,
-  getMainwalletledger,
-  getMainwalletledgerById,
-  updateMainwalletledger,
-  deleteMainwalletledger
-} = require('../controllers/mainWalletLedgerController.js');
-
-const {
-  createMessagesetting,
-  getMessagesettings,
-  getMessagesettingById,
-  updateMessagesetting,
-  deleteMessagesetting
-} = require('../controllers/messageSettingController.js');
-
-const {
-  createNewsevent,
-  getNewsevents,
-  getNewseventById,
-  updateNewsevent,
-  deleteNewsevent
-} = require('../controllers/newsEventController.js');
-
-const {
-  createOrder,
-  getOrders,
-  getOrderById,
-  updateOrder,
-  deleteOrder
-} = require('../controllers/orderController.js');
-
-const {
-  createPanledger,
-  getPanledgers,
-  getPanledgerById,
-  updatePanledger,
-  deletePanledger
-} = require('../controllers/panLedgerController.js');
-
-const {
-  createPantoken,
-  getPantokens,
-  getPantokenById,
-  updatePantoken,
-  deletePantoken
-} = require('../controllers/panTokenController.js');
-
-const {
-  createPayoutsurcharge,
-  getPayoutsurcharges,
-  getPayoutsurchargeById,
-  updatePayoutsurcharge,
-  deletePayoutsurcharge
-} = require('../controllers/payoutSurchargeController.js');
-
-const {
-  createProduct,
-  getProducts,
-  getProductById,
-  updateProduct,
-  deleteProduct
-} = require('../controllers/productController.js');
-
-const {
-  createSelfbank,
-  getSelfbanks,
-  getSelfbankById,
-  updateSelfbank,
-  deleteSelfbank
-} = require('../controllers/selfBankController.js');
-
-const {
-  createService,
-  getServices,
-  getServiceById,
-  updateService,
-  deleteService
-} = require('../controllers/serviceController.js');
-
-const {
-  createState,
-  getStates,
-  getStateById,
-  updateState,
-  deleteState
-} = require('../controllers/stateController.js');
-
-const {
-  createTicket,
-  getTickets,
-  getTicketById,
-  updateTicket,
-  deleteTicket
-} = require('../controllers/ticketController.js');
-
-const {
-  createWalletpin,
-  getWalletpins,
-  getWalletpinById,
-  updateWalletpin,
-  deleteWalletpin
-} = require('../controllers/walletPinController.js');
-
+const documentController = require('../controllers/documentController.js');
+const authorizationController = require('../controllers/authorizationController.js');
+const memberController = require('../controllers/memberController.js');
+const aepscomissionController = require('../controllers/aepscomissionController.js');
+const aepswalletController = require('../controllers/aepswalletController.js');
+const balanceController = require('../controllers/balanceController.js');
+//const balanceLedgerController = require('../controllers/balanceLedgerController.js');
+const bankController = require('../controllers/bankController.js');
+const bankSettingController = require('../controllers/bankSettingController.js');
+const companyController = require('../controllers/companyController.js');
+const contactusController = require('../controllers/contactusController.js');
+const districtController = require('../controllers/districtController.js');
+const dmrsController = require('../controllers/dmrsController.js');
+const employeeController = require('../controllers/employeeController.js');
+const epfoController = require('../controllers/epfoController.js');
+const epfoledgerController = require('../controllers/epfoledgerController.js');
+const exceptionController = require('../controllers/exceptionController.js');
+const fundrequestController = require('../controllers/fundrequestController.js');
+const galleryController = require('../controllers/galleryController.js');
+const gstledgerController = require('../controllers/gstledgerController.js');
+const gstregistrationController = require('../controllers/gstRegistrationController.js');
+const idMasterController = require('../controllers/idMasterController.js');
+const idRequestController = require('../controllers/idRequestController.js');
+const itrController = require('../controllers/itrController.js');
+const itrledgerController = require('../controllers/itrLedgerController.js');
+const loginHistoryController = require('../controllers/loginHistoryController.js');
+const mainWalletLedgerController = require('../controllers/mainWalletLedgerController.js');
+const messageSettingController = require('../controllers/messageSettingController.js');
+const newsEventController = require('../controllers/newsEventController.js');
+const orderController = require('../controllers/orderController.js');
+const panLedgerController = require('../controllers/panLedgerController.js');
+const panTokenController = require('../controllers/panTokenController.js');
+const payoutSurchargeController = require('../controllers/payoutSurchargeController.js');
+const productController = require('../controllers/productController.js');
+const selfBankController = require('../controllers/selfBankController.js');
+const serviceController = require('../controllers/serviceController.js');
+const stateController = require('../controllers/stateController.js');
+const ticketController = require('../controllers/ticketController.js');
+const walletPinController = require('../controllers/walletPinController.js');
 
 const router = express.Router();
 
+router.post('/uploadDocument', upload.single('Document'), documentController.uploadDocument);
 
-router.post('/uploadDocument', upload.single('Document'), uploadDocument);
+router.post('/userSignup', authorizationController.userSignup);
+router.post('/userLogin', authorizationController.userLogin);
+router.post('/checkAdmin', authorizationController.checkAdmin);
 
-router.post('/userSignup', userSignup);
-router.post('/userLogin', userLogin);
-router.post('/checkAdmin', checkAdmin);
+router.post('/createMember', verifyToken, memberController.createMember);
+router.post('/getMembers', verifyToken, memberController.getMembers);
+router.post('/getMemberById', verifyToken, memberController.getMemberById);
+router.post('/updateMember', verifyToken, memberController.updateMember);
+router.post('/deleteMember', verifyToken, memberController.deleteMember);
+router.post('/getMemberuniqueId', verifyToken, memberController.getMemberuniqueId);
 
-router.post('/createMember', verifyToken, createMember);
-router.post('/getMembers', verifyToken, getMembers);
-router.post('/getMemberById', verifyToken, getMemberById);
-router.post('/updateMember', verifyToken, updateMember);
-router.post('/deleteMember', verifyToken, deleteMember);
-router.post('/getMemberuniqueId', verifyToken, getMemberuniqueId);
+router.post('/createAepscomisison', verifyToken, aepscomissionController.createAepscomission);
+router.post('/getAepscomissions', verifyToken, aepscomissionController.getAepscomission);
+router.post('/getAepscomisisonById', verifyToken, aepscomissionController.getAepscomissionById);
+router.post('/updateAepscomisison', verifyToken, aepscomissionController.updateAepscomission);
+router.post('/deleteAepscomission', verifyToken, aepscomissionController.deleteAepscomission);
 
-router.post('/createAepscomisison', verifyToken, createAepscomission);
-router.post('/getAepscomissions', verifyToken, getAepscomission);
-router.post('/getAepscomisisonById', verifyToken, getAepscomissionById);
-router.post('/updateAepscomisison', verifyToken, updateAepscomission);
-router.post('/deleteAepscomission', verifyToken, deleteAepscomission);
+router.post('/createAepswallet', verifyToken, aepswalletController.createAepswallet);
+router.post('/getAepswallet', verifyToken, aepswalletController.getAepswallet);
+router.post('/getAepswalletById', verifyToken, aepswalletController.getAepswalletById);
+router.post('/updateAepswallet', verifyToken, aepswalletController.updateAepswallet);
+router.post('/deleteAepswallet', verifyToken, aepswalletController.deleteAepswallet);
 
-router.post('/createAepswallet', verifyToken, createAepswallet);
-router.post('/getAepswallet', verifyToken, getAepswallet);
-router.post('/getAepswalletById', verifyToken, getAepswalletById);
-router.post('/updateAepswallet', verifyToken, updateAepswallet);
-router.post('/deleteAepswallet', verifyToken, deleteAepswallet);
+router.post('/createBalance', verifyToken, balanceController.createBalance);
+router.post('/getBalance', verifyToken, balanceController.getBalance);
+router.post('/getBalanceById', verifyToken, balanceController.getBalanceById);
+router.post('/updateBalance', verifyToken, balanceController.updateBalance);
+router.post('/deleteBalance', verifyToken, balanceController.deleteBalance);
 
-router.post('/createBalance', verifyToken, createBalance);
-router.post('/getBalance', verifyToken, getBalance);
-router.post('/getBalanceById', verifyToken, getBalanceById);
-router.post('/updateBalance', verifyToken, updateBalance);
-router.post('/deleteBalance', verifyToken, deleteBalance);
+// router.post('/createBalanceledger', verifyToken, balanceLedgerController.createBalanceledger);
+// router.post('/getBalanceledger', verifyToken, balanceLedgerController.getBalanceledger);
+// router.post('/getBalanceledgerById', verifyToken, balanceLedgerController.getBalanceledgerById);
+// router.post('/updateBalanceledger', verifyToken, balanceLedgerController.updateBalanceledger);
+// router.post('/deleteBalanceledger', verifyToken, balanceLedgerController.deleteBalanceledger);
 
-//router.post('/createBalanceledger', verifyToken, createBalanceledger);
-//router.post('/getBalanceledger', verifyToken, getBalanceledger);
-//router.post('/getBalanceledgerById', verifyToken, getBalanceledgerById);
-//router.post('/updateBalanceledger', verifyToken, updateBalanceledger);
-//router.post('/deleteBalanceledger', verifyToken, deleteBalanceledger);
+router.post('/createBank', verifyToken, bankController.createBank);
+router.post('/getBanks', verifyToken, bankController.getBanks);
+router.post('/getBankById', verifyToken, bankController.getBankById);
+router.post('/updateBank', verifyToken, bankController.updateBank);
+router.post('/deleteBank', verifyToken, bankController.deleteBank);
 
-router.post('/createBank', verifyToken, createBank);
-router.post('/getBanks', verifyToken, getBanks);
-router.post('/getBankById', verifyToken, getBankById);
-router.post('/updateBank', verifyToken, updateBank);
-router.post('/deleteBank', verifyToken, deleteBank);
+router.post('/createBanksetting', verifyToken, bankSettingController.createBankSetting);
+router.post('/getBanksettings', verifyToken, bankSettingController.getBankSettings);
+router.post('/getBanksettingById', verifyToken, bankSettingController.getBankSettingById);
+router.post('/updateBanksetting', verifyToken, bankSettingController.updateBankSetting);
+router.post('/deleteBanksetting', verifyToken, bankSettingController.deleteBankSetting);
 
-router.post('/createBanksetting', verifyToken, createBankSetting);
-router.post('/getBanksettings', verifyToken, getBankSettings);
-router.post('/getBanksettingById', verifyToken, getBankSettingById);
-router.post('/updateBanksetting', verifyToken, updateBankSetting);
-router.post('/deleteBanksetting', verifyToken, deleteBankSetting);
+router.post('/createCompany', verifyToken, companyController.createCompany);
+router.post('/getCompanies', verifyToken, companyController.getCompanies);
+router.post('/getComapaniesById', verifyToken, companyController.getCompanyById);
+router.post('/updateCompany', verifyToken, companyController.updateCompany);
+router.post('/deleteCompany', verifyToken, companyController.deleteCompany);
 
-router.post('/createCompany', verifyToken, createCompany);
-router.post('/getCompanies', verifyToken, getCompanies);
-router.post('/getComapaniesById', verifyToken, getCompanyById);
-router.post('/updateCompany', verifyToken, updateCompany);
-router.post('/deleteCompany', verifyToken, deleteCompany);
+router.post('/createContactus', verifyToken, contactusController.createContactUs);
+router.post('/getContactus', verifyToken, contactusController.getContactUs);
+router.post('/getContactusById', verifyToken, contactusController.getContactUsById);
+router.post('/updateContactus', verifyToken, contactusController.updateContactUs);
+router.post('/deleteContactus', verifyToken, contactusController.deleteContactUs);
 
-router.post('/createContactus', verifyToken, createContactUs);
-router.post('/getContactus', verifyToken, getContactUs);
-router.post('/getContactusById', verifyToken, getContactUsById);
-router.post('/updateContactus', verifyToken, updateContactUs);
-router.post('/deleteContactus', verifyToken, deleteContactUs);
+router.post('/createDistrict', verifyToken, districtController.createDistrict);
+router.post('/getDistricts', verifyToken, districtController.getDistricts);
+router.post('/getDistrictById', verifyToken, districtController.getDistrictById);
+router.post('/updateDistrict', verifyToken, districtController.updateDistrict);
+router.post('/deleteDistrict', verifyToken, districtController.deleteDistrict);
 
-router.post('/createDistrict', verifyToken, createDistrict);
-router.post('/getDistricts', verifyToken, getDistricts);
-router.post('/getDistrictById', verifyToken, getDistrictById);
-router.post('/updateDistrict', verifyToken, updateDistrict);
-router.post('/deleteDistrict', verifyToken, deleteDistrict);
+router.post('/createDmrs', verifyToken, dmrsController.createDmrs);
+router.post('/getDmrs', verifyToken, dmrsController.getDmrs);
+router.post('/getDmrsById', verifyToken, dmrsController.getDmrsById);
+router.post('/updateDmrs', verifyToken, dmrsController.updateDmrs);
+router.post('/deleteDmrs', verifyToken, dmrsController.deleteDmrs);
 
-router.post('/createDmrs', verifyToken, createDmrs);
-router.post('/getDmrs', verifyToken, getDmrs);
-router.post('/getDmrsById', verifyToken, getDmrsById);
-router.post('/updateDmrs', verifyToken, updateDmrs);
-router.post('/deleteDmrs', verifyToken, deleteDmrs);
+router.post('/createEmployee', verifyToken, employeeController.createEmployee);
+router.post('/getEmployee', verifyToken, employeeController.getEmployees);
+router.post('/getEmployeeById', verifyToken, employeeController.getEmployeeById);
+router.post('/updateEmployee', verifyToken, employeeController.updateEmployee);
+router.post('/deleteEmployee', verifyToken, employeeController.deleteEmployee);
 
-router.post('/createEmployee', verifyToken, createEmployee);
-router.post('/getEmployee', verifyToken, getEmployees);
-router.post('/getEmployeeById', verifyToken, getEmployeeById);
-router.post('/updateEmployee', verifyToken, updateEmployee);
-router.post('/deleteEmployee', verifyToken, deleteEmployee);
+router.post('/createEpfo', verifyToken, epfoController.createEpfo);
+router.post('/getEpfo', verifyToken, epfoController.getEpfos);
+router.post('/getEpfoById', verifyToken, epfoController.getEpfoById);
+router.post('/updateEpfo', verifyToken, epfoController.updateEpfo);
+router.post('/deleteEpfo', verifyToken, epfoController.deleteEpfo);
 
-router.post('/createEpfo', verifyToken, createEpfo);
-router.post('/getEpfo', verifyToken, getEpfos);
-router.post('/getEpfoById', verifyToken, getEpfoById);
-router.post('/updateEpfo', verifyToken, updateEpfo);
-router.post('/deleteEpfo', verifyToken, deleteEpfo);
+router.post('/createEpfoledger', verifyToken, epfoledgerController.createEpfoledger);
+router.post('/getEpfoledgers', verifyToken, epfoledgerController.getEpfoledgers);
+router.post('/getEpfoledgerById', verifyToken, epfoledgerController.getEpfoledgerById);
+router.post('/updateEpfoledger', verifyToken, epfoledgerController.updateEpfoledger);
+router.post('/deleteEpfoledger', verifyToken, epfoledgerController.deleteEpfoledger);
 
-router.post('/createEpfoledger', verifyToken, createEpfoledger);
-router.post('/getEpfoledgers', verifyToken, getEpfoledgers);
-router.post('/getEpfoledgerById', verifyToken, getEpfoledgerById);
-router.post('/updateEpfoledger', verifyToken, updateEpfoledger);
-router.post('/deleteEpfoledger', verifyToken, deleteEpfoledger);
+router.post('/createException', verifyToken, exceptionController.createException);
+router.post('/getExceptions', verifyToken, exceptionController.getExceptions);
+router.post('/getExceptionById', verifyToken, exceptionController.getExceptionById);
+router.post('/updateException', verifyToken, exceptionController.updateException);
+router.post('/deleteException', verifyToken, exceptionController.deleteException);
 
-router.post('/createException', verifyToken, createException);
-router.post('/getExceptions', verifyToken, getExceptions);
-router.post('/getExceptionById', verifyToken, getExceptionById);
-router.post('/updateException', verifyToken, updateException);
-router.post('/deleteException', verifyToken, deleteException);
+router.post('/createFundrequest', verifyToken, fundrequestController.createFundRequest);
+router.post('/getFundrequest', verifyToken, fundrequestController.getFundRequests);
+router.post('/getFundrequestById', verifyToken, fundrequestController.getFundRequestById);
+router.post('/updateFundrequest', verifyToken, fundrequestController.updateFundRequest);
+router.post('/deleteFundrequest', verifyToken, fundrequestController.deleteFundRequest);
 
-router.post('/createFundrequest', verifyToken, createFundRequest);
-router.post('/getFundrequest', verifyToken, getFundRequests);
-router.post('/getFundrequestById', verifyToken, getFundRequestById);
-router.post('/updateFundrequest', verifyToken, updateFundRequest);
-router.post('/deleteFundrequest', verifyToken, deleteFundRequest);
+// Check if all controllers are defined
+const controllers = {
+    documentController,
+    authorizationController,
+    memberController,
+    aepscomissionController,
+    aepswalletController,
+    balanceController,
+    bankController,
+    bankSettingController,
+    companyController,
+    contactusController,
+    districtController,
+    dmrsController,
+    employeeController,
+    epfoController,
+    epfoledgerController,
+    exceptionController,
+    fundrequestController,
+    galleryController,
+    gstledgerController,
+    gstregistrationController,
+    idMasterController,
+    idRequestController,
+    itrController,
+    itrledgerController,
+    loginHistoryController,
+    mainWalletLedgerController,
+    messageSettingController,
+    newsEventController,
+    orderController,
+    panLedgerController,
+    panTokenController,
+    payoutSurchargeController,
+    productController,
+    selfBankController,
+    serviceController,
+    stateController,
+    ticketController,
+    walletPinController
+};
 
-router.post('/createGallery', verifyToken, createGallery);
-router.post('/getGalleries', verifyToken, getGalleries);
-router.post('/getGalleryById', verifyToken, getGalleryById);
-router.post('/updateGallery', verifyToken, updateGallery);
-router.post('/deleteGallery', verifyToken, deleteGallery);
-
-router.post('/createGstledger', verifyToken, createGstledger);
-router.post('/getGstledgers', verifyToken, getGstledgers);
-router.post('/getGstledgerById', verifyToken, getGstledgerById);
-router.post('/updateGstledger', verifyToken, updateGstledger);
-router.post('/deleteGstledger', verifyToken, deleteGstledger);
-
-router.post('/createGstledger', verifyToken, createGstregistration);
-router.post('/getGstledgers', verifyToken, getGstregistrations);
-router.post('/getGstledgerById', verifyToken, getGstregistrationById);
-router.post('/updateGstledger', verifyToken, updateGstregistration);
-router.post('/deleteGstledger', verifyToken, deleteGstRegistration);
-
-router.post('/createIdmaster', verifyToken, createIdmaster);
-router.post('/getIdmasters', verifyToken, getIdmasters);
-router.post('/getIdmasterById', verifyToken, getIdmasterById);
-router.post('/updateIdmaster', verifyToken, updateIdmaster);
-router.post('/deleteIdmaster', verifyToken, deleteIdmaster);
-
-router.post('/createIdrequest', verifyToken, createIdRequest);
-router.post('/getIdrequests', verifyToken, getIdRequests);
-router.post('/getIdrequestById', verifyToken, getIdRequestsById);
-router.post('/updateIdrequest', verifyToken, updateIdRequest);
-router.post('/deleteIdrequest', verifyToken, deleteIdRequest);
-
-router.post('/createItr', verifyToken, createItr);
-router.post('/getItrs', verifyToken, getItrs);
-router.post('/getItrById', verifyToken, getItrById);
-router.post('/updateItr', verifyToken, updateItr);
-router.post('/deleteItr', verifyToken, deleteItr);
-
-router.post('/createItrledger', verifyToken, createItrledger);
-router.post('/getItrledger', verifyToken, getItrledgers);
-router.post('/getItrledgerById', verifyToken, getItrledgerById);
-router.post('/updateItrledger', verifyToken, updateItrledger);
-router.post('/deleteItrledger', verifyToken, deleteItrledger);
-
-router.post('/createLoginhistory', verifyToken, createLoginhistory);
-router.post('/getLoginhistory', verifyToken, getLoginhistories);
-router.post('/getLoginhistoryById', verifyToken, getLoginhistoryById);
-router.post('/updateLoginhistory', verifyToken, updateLoginhistory);
-router.post('/deleteLoginhistory', verifyToken, deleteLoginhistory);
-
-router.post('/createMainwalletledger', verifyToken, createMainwalletledger);
-router.post('/getMainwalletledger', verifyToken, getMainwalletledger);
-router.post('/getMainwalletledgerById', verifyToken, getMainwalletledgerById);
-router.post('/updateMainwalletledger', verifyToken, updateMainwalletledger);
-router.post('/deleteMainwalletledger', verifyToken, deleteMainwalletledger);
-
-router.post('/createMessagesetting', verifyToken, createMessagesetting);
-router.post('/getMessagesettings', verifyToken, getMessagesettings);
-router.post('/getMessagesettingById', verifyToken, getMessagesettingById);
-router.post('/updateMessagesetting', verifyToken, updateMessagesetting);
-router.post('/deleteMessagesetting', verifyToken, deleteMessagesetting);
-
-router.post('/createNewsevent', verifyToken, createNewsevent);
-router.post('/getNewsevent', verifyToken, getNewsevents);
-router.post('/getNewseventById', verifyToken, getNewseventById);
-router.post('/updateNewsevent', verifyToken, updateNewsevent);
-router.post('/deleteNewsevent', verifyToken, deleteNewsevent);
-
-router.post('/createOrder', verifyToken, createOrder);
-router.post('/getOrders', verifyToken, getOrders);
-router.post('/getOrderById', verifyToken, getOrderById);
-router.post('/updateOrder', verifyToken, updateOrder);
-router.post('/deleteOrder', verifyToken, deleteOrder);
-
-router.post('/createPanledger', verifyToken, createPanledger);
-router.post('/getPanledgers', verifyToken, getPanledgers);
-router.post('/getPanledgerById', verifyToken, getPanledgerById);
-router.post('/updatePanledger', verifyToken, updatePanledger);
-router.post('/deletePanledger', verifyToken, deletePanledger);
-
-router.post('/createPantoken', verifyToken, createPantoken);
-router.post('/getPantokens', verifyToken, getPantokens);
-router.post('/getPantokenById', verifyToken, getPantokenById);
-router.post('/updatePantoken', verifyToken, updatePantoken);
-router.post('/deletePantoken', verifyToken, deletePantoken);
-
-router.post('/createPayoutsurcharge', verifyToken, createPayoutsurcharge);
-router.post('/getPayoutsurchaarges', verifyToken, getPayoutsurcharges);
-router.post('/getPayoutsurchargeById', verifyToken, getPayoutsurchargeById);
-router.post('/updatePayoutsurcharge', verifyToken, updatePayoutsurcharge);
-router.post('/deletePayoutsurcharge', verifyToken, deletePayoutsurcharge);
-
-router.post('/createProduct', verifyToken, createProduct);
-router.post('/getProducts', verifyToken, getProducts);
-router.post('/getProductById', verifyToken, getProductById);
-router.post('/updateProduct', verifyToken, updateProduct);
-router.post('/deleteProduct', verifyToken, deleteProduct);
-
-router.post('/createSelfbank', verifyToken, createSelfbank);
-router.post('/getSelfbanks', verifyToken, getSelfbanks);
-router.post('/getSelfbankById', verifyToken, getSelfbankById);
-router.post('/updateSelfbank', verifyToken, updateSelfbank);
-router.post('/deleteSelfbank', verifyToken, deleteSelfbank);
-
-router.post('/createService', verifyToken, createService);
-router.post('/getServices', verifyToken, getServices);
-router.post('/getServiceById', verifyToken, getServiceById);
-router.post('/updateService', verifyToken, updateService);
-router.post('/deleteService', verifyToken, deleteService);
-
-router.post('/createState', verifyToken, createState);
-router.post('/getStates', verifyToken, getStates);
-router.post('/getStateById', verifyToken, getStateById);
-router.post('/updateState', verifyToken, updateState);
-router.post('/deleteState', verifyToken, deleteState);
-
-router.post('/createTicket', verifyToken, createTicket);
-router.post('/getTickets', verifyToken, getTickets);
-router.post('/getTicketById', verifyToken, getTicketById);
-router.post('/updateTicket', verifyToken, updateTicket);
-router.post('/deleteTicket', verifyToken, deleteTicket);
-
-router.post('/createWalletpin', verifyToken, createWalletpin);
-router.post('/getWalletpins', verifyToken, getWalletpins);
-router.post('/getWalletpinById', verifyToken, getWalletpinById);
-router.post('/updateWalletpin', verifyToken, updateWalletpin);
-router.post('/deleteWalletpin', verifyToken, deleteWalletpin);
+for (const [name, controller] of Object.entries(controllers)) {
+    if (!controller) {
+        console.error(`Controller ${name} is undefined`);
+    }
+}
 
 module.exports = router;
+
