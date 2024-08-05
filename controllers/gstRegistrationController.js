@@ -1,4 +1,4 @@
-const GstRegistrations = require('../models/GstRegistrationModel');
+const GstRegistrations = require('../models/gstRegistrationModel');
 
 exports.createGstregistration = async (req, res) => {
     try {
