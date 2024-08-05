@@ -159,6 +159,12 @@ router.post('/getGstregistrationById', verifyToken, gstregistrationController.ge
 router.post('/updateGstregistration', verifyToken, gstregistrationController.updateGstregistration);
 router.post('/deleteGstRegistration', verifyToken, gstregistrationController.deleteGstRegistration);
 
+router.post('/createIdmaster', verifyToken, idMasterController.createIdmaster);
+router.post('/getIdmasters', verifyToken, idMasterController.getIdmasters);
+router.post('/getIdmasterById', verifyToken, idMasterController.getIdmasterById);
+router.post('/updateIdmaster', verifyToken, idMasterController.updateIdmaster);
+router.post('/deleteIdmaster', verifyToken, idMasterController.deleteIdmaster);
+
 
 // Check if all controllers are defined
 const controllers = {
