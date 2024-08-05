@@ -8,7 +8,7 @@ const memberController = require('../controllers/memberController.js');
 const aepscomissionController = require('../controllers/aepscomissionController.js');
 const aepswalletController = require('../controllers/aepswalletController.js');
 const balanceController = require('../controllers/balanceController.js');
-//const balanceLedgerController = require('../controllers/balanceLedgerController.js');
+// const balanceLedgerController = require('../controllers/balanceLedgerController.js');
 const bankController = require('../controllers/bankController.js');
 const bankSettingController = require('../controllers/bankSettingController.js');
 const companyController = require('../controllers/companyController.js');
@@ -147,6 +147,132 @@ router.post('/getFundrequestById', verifyToken, fundrequestController.getFundReq
 router.post('/updateFundrequest', verifyToken, fundrequestController.updateFundRequest);
 router.post('/deleteFundrequest', verifyToken, fundrequestController.deleteFundRequest);
 
+router.post('/createGallery', verifyToken, galleryController.createGallery);
+router.post('/getGallery', verifyToken, galleryController.getGallery);
+router.post('/getGalleryById', verifyToken, galleryController.getGalleryById);
+router.post('/updateGallery', verifyToken, galleryController.updateGallery);
+router.post('/deleteGallery', verifyToken, galleryController.deleteGallery);
+
+router.post('/createGstledger', verifyToken, gstledgerController.createGstledger);
+router.post('/getGstledger', verifyToken, gstledgerController.getGstledger);
+router.post('/getGstledgerById', verifyToken, gstledgerController.getGstledgerById);
+router.post('/updateGstledger', verifyToken, gstledgerController.updateGstledger);
+router.post('/deleteGstledger', verifyToken, gstledgerController.deleteGstledger);
+
+router.post('/createGstregistration', verifyToken, gstregistrationController.createGstRegistration);
+router.post('/getGstregistration', verifyToken, gstregistrationController.getGstRegistration);
+router.post('/getGstregistrationById', verifyToken, gstregistrationController.getGstRegistrationById);
+router.post('/updateGstregistration', verifyToken, gstregistrationController.updateGstRegistration);
+router.post('/deleteGstregistration', verifyToken, gstregistrationController.deleteGstRegistration);
+
+router.post('/createIdMaster', verifyToken, idMasterController.createIdMaster);
+router.post('/getIdMaster', verifyToken, idMasterController.getIdMaster);
+router.post('/getIdMasterById', verifyToken, idMasterController.getIdMasterById);
+router.post('/updateIdMaster', verifyToken, idMasterController.updateIdMaster);
+router.post('/deleteIdMaster', verifyToken, idMasterController.deleteIdMaster);
+
+router.post('/createIdRequest', verifyToken, idRequestController.createIdRequest);
+router.post('/getIdRequest', verifyToken, idRequestController.getIdRequest);
+router.post('/getIdRequestById', verifyToken, idRequestController.getIdRequestById);
+router.post('/updateIdRequest', verifyToken, idRequestController.updateIdRequest);
+router.post('/deleteIdRequest', verifyToken, idRequestController.deleteIdRequest);
+
+router.post('/createItr', verifyToken, itrController.createItr);
+router.post('/getItr', verifyToken, itrController.getItr);
+router.post('/getItrById', verifyToken, itrController.getItrById);
+router.post('/updateItr', verifyToken, itrController.updateItr);
+router.post('/deleteItr', verifyToken, itrController.deleteItr);
+
+router.post('/createItrledger', verifyToken, itrledgerController.createItrledger);
+router.post('/getItrledger', verifyToken, itrledgerController.getItrledger);
+router.post('/getItrledgerById', verifyToken, itrledgerController.getItrledgerById);
+router.post('/updateItrledger', verifyToken, itrledgerController.updateItrledger);
+router.post('/deleteItrledger', verifyToken, itrledgerController.deleteItrledger);
+
+router.post('/createLoginHistory', verifyToken, loginHistoryController.createLoginHistory);
+router.post('/getLoginHistory', verifyToken, loginHistoryController.getLoginHistory);
+router.post('/getLoginHistoryById', verifyToken, loginHistoryController.getLoginHistoryById);
+router.post('/updateLoginHistory', verifyToken, loginHistoryController.updateLoginHistory);
+router.post('/deleteLoginHistory', verifyToken, loginHistoryController.deleteLoginHistory);
+
+router.post('/createMainWalletLedger', verifyToken, mainWalletLedgerController.createMainWalletLedger);
+router.post('/getMainWalletLedger', verifyToken, mainWalletLedgerController.getMainWalletLedger);
+router.post('/getMainWalletLedgerById', verifyToken, mainWalletLedgerController.getMainWalletLedgerById);
+router.post('/updateMainWalletLedger', verifyToken, mainWalletLedgerController.updateMainWalletLedger);
+router.post('/deleteMainWalletLedger', verifyToken, mainWalletLedgerController.deleteMainWalletLedger);
+
+router.post('/createMessageSetting', verifyToken, messageSettingController.createMessageSetting);
+router.post('/getMessageSetting', verifyToken, messageSettingController.getMessageSetting);
+router.post('/getMessageSettingById', verifyToken, messageSettingController.getMessageSettingById);
+router.post('/updateMessageSetting', verifyToken, messageSettingController.updateMessageSetting);
+router.post('/deleteMessageSetting', verifyToken, messageSettingController.deleteMessageSetting);
+
+router.post('/createNewsEvent', verifyToken, newsEventController.createNewsEvent);
+router.post('/getNewsEvent', verifyToken, newsEventController.getNewsEvent);
+router.post('/getNewsEventById', verifyToken, newsEventController.getNewsEventById);
+router.post('/updateNewsEvent', verifyToken, newsEventController.updateNewsEvent);
+router.post('/deleteNewsEvent', verifyToken, newsEventController.deleteNewsEvent);
+
+router.post('/createOrder', verifyToken, orderController.createOrder);
+router.post('/getOrder', verifyToken, orderController.getOrder);
+router.post('/getOrderById', verifyToken, orderController.getOrderById);
+router.post('/updateOrder', verifyToken, orderController.updateOrder);
+router.post('/deleteOrder', verifyToken, orderController.deleteOrder);
+
+router.post('/createPanLedger', verifyToken, panLedgerController.createPanLedger);
+router.post('/getPanLedger', verifyToken, panLedgerController.getPanLedger);
+router.post('/getPanLedgerById', verifyToken, panLedgerController.getPanLedgerById);
+router.post('/updatePanLedger', verifyToken, panLedgerController.updatePanLedger);
+router.post('/deletePanLedger', verifyToken, panLedgerController.deletePanLedger);
+
+router.post('/createPanToken', verifyToken, panTokenController.createPanToken);
+router.post('/getPanToken', verifyToken, panTokenController.getPanToken);
+router.post('/getPanTokenById', verifyToken, panTokenController.getPanTokenById);
+router.post('/updatePanToken', verifyToken, panTokenController.updatePanToken);
+router.post('/deletePanToken', verifyToken, panTokenController.deletePanToken);
+
+router.post('/createPayoutSurcharge', verifyToken, payoutSurchargeController.createPayoutSurcharge);
+router.post('/getPayoutSurcharge', verifyToken, payoutSurchargeController.getPayoutSurcharge);
+router.post('/getPayoutSurchargeById', verifyToken, payoutSurchargeController.getPayoutSurchargeById);
+router.post('/updatePayoutSurcharge', verifyToken, payoutSurchargeController.updatePayoutSurcharge);
+router.post('/deletePayoutSurcharge', verifyToken, payoutSurchargeController.deletePayoutSurcharge);
+
+router.post('/createProduct', verifyToken, productController.createProduct);
+router.post('/getProduct', verifyToken, productController.getProduct);
+router.post('/getProductById', verifyToken, productController.getProductById);
+router.post('/updateProduct', verifyToken, productController.updateProduct);
+router.post('/deleteProduct', verifyToken, productController.deleteProduct);
+
+router.post('/createSelfBank', verifyToken, selfBankController.createSelfBank);
+router.post('/getSelfBank', verifyToken, selfBankController.getSelfBank);
+router.post('/getSelfBankById', verifyToken, selfBankController.getSelfBankById);
+router.post('/updateSelfBank', verifyToken, selfBankController.updateSelfBank);
+router.post('/deleteSelfBank', verifyToken, selfBankController.deleteSelfBank);
+
+router.post('/createService', verifyToken, serviceController.createService);
+router.post('/getService', verifyToken, serviceController.getService);
+router.post('/getServiceById', verifyToken, serviceController.getServiceById);
+router.post('/updateService', verifyToken, serviceController.updateService);
+router.post('/deleteService', verifyToken, serviceController.deleteService);
+
+router.post('/createState', verifyToken, stateController.createState);
+router.post('/getState', verifyToken, stateController.getState);
+router.post('/getStateById', verifyToken, stateController.getStateById);
+router.post('/updateState', verifyToken, stateController.updateState);
+router.post('/deleteState', verifyToken, stateController.deleteState);
+
+router.post('/createTicket', verifyToken, ticketController.createTicket);
+router.post('/getTicket', verifyToken, ticketController.getTicket);
+router.post('/getTicketById', verifyToken, ticketController.getTicketById);
+router.post('/updateTicket', verifyToken, ticketController.updateTicket);
+router.post('/deleteTicket', verifyToken, ticketController.deleteTicket);
+
+router.post('/createWalletPin', verifyToken, walletPinController.createWalletPin);
+router.post('/getWalletPin', verifyToken, walletPinController.getWalletPin);
+router.post('/getWalletPinById', verifyToken, walletPinController.getWalletPinById);
+router.post('/updateWalletPin', verifyToken, walletPinController.updateWalletPin);
+router.post('/deleteWalletPin', verifyToken, walletPinController.deleteWalletPin);
+
 // Check if all controllers are defined
 const controllers = {
     documentController,
@@ -196,4 +322,3 @@ for (const [name, controller] of Object.entries(controllers)) {
 }
 
 module.exports = router;
-
