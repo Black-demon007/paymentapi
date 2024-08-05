@@ -153,6 +153,13 @@ router.post('/getGalleryById', verifyToken, galleryController.getGalleryById);
 router.post('/updateGallery', verifyToken, galleryController.updateGallery);
 router.post('/deleteGallery', verifyToken, galleryController.deleteGallery);
 
+router.post('/createGstregistration', verifyToken, gstregistrationController.createGstregistration);
+router.post('/getGstregistrations', verifyToken, gstregistrationController.getGstregistrations);
+router.post('/getGstregistrationById', verifyToken, gstregistrationController.getGstregistrationById);
+router.post('/updateGstregistration', verifyToken, gstregistrationController.updateGstregistration);
+router.post('/deleteGstRegistration', verifyToken, gstregistrationController.deleteGstRegistration);
+
+
 // Check if all controllers are defined
 const controllers = {
     documentController,
