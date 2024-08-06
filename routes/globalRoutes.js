@@ -189,6 +189,104 @@ router.post('/getLoginhistoryById', verifyToken, loginHistoryController.getLogin
 router.post('/updateLoginhistory', verifyToken, loginHistoryController.updateLoginhistory);
 router.post('/deleteLoginhistory', verifyToken, loginHistoryController.deleteLoginhistory);
 
+// For gstledgerController
+router.post('/createGstledger', verifyToken, gstledgerController.createGstledger);
+router.post('/getGstledgers', verifyToken, gstledgerController.getGstledgers);
+router.post('/getGstledgerById', verifyToken, gstledgerController.getGstledgerById);
+router.post('/updateGstledger', verifyToken, gstledgerController.updateGstledger);
+router.post('/deleteGstledger', verifyToken, gstledgerController.deleteGstledger);
+
+// For mainWalletLedgerController
+router.post('/createMainwalletledger', verifyToken, mainWalletLedgerController.createMainwalletledger);
+router.post('/getMainwalletledgers', verifyToken, mainWalletLedgerController.getMainwalletledger);
+router.post('/getMainwalletledgerById', verifyToken, mainWalletLedgerController.getMainwalletledgerById);
+router.post('/updateMainwalletledger', verifyToken, mainWalletLedgerController.updateMainwalletledger);
+router.post('/deleteMainwalletledger', verifyToken, mainWalletLedgerController.deleteMainwalletledger);
+
+// For messageSettingController
+router.post('/createMessagesetting', verifyToken, messageSettingController.createMessagesetting);
+router.post('/getMessagesettings', verifyToken, messageSettingController.getMessagesettings);
+router.post('/getMessagesettingById', verifyToken, messageSettingController.getMessagesettingById);
+router.post('/updateMessagesetting', verifyToken, messageSettingController.updateMessagesetting);
+router.post('/deleteMessagesetting', verifyToken, messageSettingController.deleteMessagesetting);
+
+// For newsEventController
+router.post('/createNewsevent', verifyToken, newsEventController.createNewsevent);
+router.post('/getNewsevents', verifyToken, newsEventController.getNewsevents);
+router.post('/getNewseventById', verifyToken, newsEventController.getNewseventById);
+router.post('/updateNewsevent', verifyToken, newsEventController.updateNewsevent);
+router.post('/deleteNewsevent', verifyToken, newsEventController.deleteNewsevent);
+
+// For orderController
+router.post('/createOrder', verifyToken, orderController.createOrder);
+router.post('/getOrders', verifyToken, orderController.getOrders);
+router.post('/getOrderById', verifyToken, orderController.getOrderById);
+router.post('/updateOrder', verifyToken, orderController.updateOrder);
+router.post('/deleteOrder', verifyToken, orderController.deleteOrder);
+
+// For panLedgerController
+router.post('/createPanledger', verifyToken, panLedgerController.createPanledger);
+router.post('/getPanledgers', verifyToken, panLedgerController.getPanledgers);
+router.post('/getPanledgerById', verifyToken, panLedgerController.getPanledgerById);
+router.post('/updatePanledger', verifyToken, panLedgerController.updatePanledger);
+router.post('/deletePanledger', verifyToken, panLedgerController.deletePanledger);
+
+// For panTokenController
+router.post('/createPantoken', verifyToken, panTokenController.createPantoken);
+router.post('/getPantokens', verifyToken, panTokenController.getPantokens);
+router.post('/getPantokenById', verifyToken, panTokenController.getPantokenById);
+router.post('/updatePantoken', verifyToken, panTokenController.updatePantoken);
+router.post('/deletePantoken', verifyToken, panTokenController.deletePantoken);
+
+// For payoutSurchargeController
+router.post('/createPayoutsurcharge', verifyToken, payoutSurchargeController.createPayoutsurcharge);
+router.post('/getPayoutsurcharges', verifyToken, payoutSurchargeController.getPayoutsurcharges);
+router.post('/getPayoutsurchargeById', verifyToken, payoutSurchargeController.getPayoutsurchargeById);
+router.post('/updatePayoutsurcharge', verifyToken, payoutSurchargeController.updatePayoutsurcharge);
+router.post('/deletePayoutsurcharge', verifyToken, payoutSurchargeController.deletePayoutsurcharge);
+
+// For productController
+router.post('/createProduct', verifyToken, productController.createProduct);
+router.post('/getProducts', verifyToken, productController.getProducts);
+router.post('/getProductById', verifyToken, productController.getProductById);
+router.post('/updateProduct', verifyToken, productController.updateProduct);
+router.post('/deleteProduct', verifyToken, productController.deleteProduct);
+
+// For selfBankController
+router.post('/createSelfbank', verifyToken, selfBankController.createSelfbank);
+router.post('/getSelfbanks', verifyToken, selfBankController.getSelfbanks);
+router.post('/getSelfbankById', verifyToken, selfBankController.getSelfbankById);
+router.post('/updateSelfbank', verifyToken, selfBankController.updateSelfbank);
+router.post('/deleteSelfbank', verifyToken, selfBankController.deleteSelfbank);
+
+// For serviceController
+router.post('/createService', verifyToken, serviceController.createService);
+router.post('/getServices', verifyToken, serviceController.getServices);
+router.post('/getServiceById', verifyToken, serviceController.getServiceById);
+router.post('/updateService', verifyToken, serviceController.updateService);
+router.post('/deleteService', verifyToken, serviceController.deleteService);
+
+// For stateController
+router.post('/createState', verifyToken, stateController.createState);
+router.post('/getStates', verifyToken, stateController.getStates);
+router.post('/getStateById', verifyToken, stateController.getStateById);
+router.post('/updateState', verifyToken, stateController.updateState);
+router.post('/deleteState', verifyToken, stateController.deleteState);
+
+// For ticketController
+router.post('/createTicket', verifyToken, ticketController.createTicket);
+router.post('/getTickets', verifyToken, ticketController.getTickets);
+router.post('/getTicketById', verifyToken, ticketController.getTicketById);
+router.post('/updateTicket', verifyToken, ticketController.updateTicket);
+router.post('/deleteTicket', verifyToken, ticketController.deleteTicket);
+
+// For walletPinController
+router.post('/createWalletpin', verifyToken, walletPinController.createWalletpin);
+router.post('/getWalletpins', verifyToken, walletPinController.getWalletpins);
+router.post('/getWalletpinById', verifyToken, walletPinController.getWalletpinById);
+router.post('/updateWalletpin', verifyToken, walletPinController.updateWalletpin);
+router.post('/deleteWalletpin', verifyToken, walletPinController.deleteWalletpin);
+
 
 // Check if all controllers are defined
 const controllers = {
@@ -215,7 +313,7 @@ const controllers = {
     idMasterController,
     idRequestController,
     itrController,
-    itrledgerController,
+    itrLedgerController,
     loginHistoryController,
     mainWalletLedgerController,
     messageSettingController,
