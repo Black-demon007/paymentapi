@@ -177,6 +177,19 @@ router.post('/getItrById', verifyToken, itrController.getItrById);
 router.post('/updateItr', verifyToken, itrController.updateItr);
 router.post('/deleteItr', verifyToken, itrController.deleteItr);
 
+router.post('/createItrLedger', verifyToken, itrLedgerController.createItrLedger);
+router.post('/getItrLedgers', verifyToken, itrLedgerController.getItrLedgers);
+router.post('/getItrLedgerById', verifyToken, itrLedgerController.getItrLedgerById);
+router.post('/updateItrLedger', verifyToken, itrLedgerController.updateItrLedger);
+router.post('/deleteItrLedger', verifyToken, itrLedgerController.deleteItrLedger);
+
+router.post('/createLoginhistory', verifyToken, loginhistoryController.createLoginhistory);
+router.post('/getLoginhistories', verifyToken, loginhistoryController.getLoginhistories);
+router.post('/getLoginhistoryById', verifyToken, loginhistoryController.getLoginhistoryById);
+router.post('/updateLoginhistory', verifyToken, loginhistoryController.updateLoginhistory);
+router.post('/deleteLoginhistory', verifyToken, loginhistoryController.deleteLoginhistory);
+
+
 // Check if all controllers are defined
 const controllers = {
     documentController,
