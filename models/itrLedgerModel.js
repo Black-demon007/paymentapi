@@ -16,9 +16,16 @@ const ItrLedgerSchema = new mongoose.Schema({
     narration: {
         type: String,
         required: true
-    }
+    },
+    number: String,
+    payMode: String,
+    chequeNumber: String,
+    chequeDate: String,
+    proof: String,
+    status: String
 }, { timestamps: true });
 
 const ItrLedger = mongoose.model('ItrLedger', ItrLedgerSchema);
 
 module.exports = { ItrLedger, ItrLedgerSchema };
+

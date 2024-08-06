@@ -26,7 +26,7 @@ const gstregistrationController = require('../controllers/gstRegistrationControl
 const idMasterController = require('../controllers/idMasterController.js');
 const idRequestController = require('../controllers/idRequestController.js');
 const itrController = require('../controllers/itrController.js');
-const itrledgerController = require('../controllers/itrLedgerController.js');
+const itrLedgerController = require('../controllers/itrLedgerController.js');
 const loginHistoryController = require('../controllers/loginHistoryController.js');
 const mainWalletLedgerController = require('../controllers/mainWalletLedgerController.js');
 const messageSettingController = require('../controllers/messageSettingController.js');
@@ -183,11 +183,11 @@ router.post('/getItrLedgerById', verifyToken, itrLedgerController.getItrLedgerBy
 router.post('/updateItrLedger', verifyToken, itrLedgerController.updateItrLedger);
 router.post('/deleteItrLedger', verifyToken, itrLedgerController.deleteItrLedger);
 
-router.post('/createLoginhistory', verifyToken, loginhistoryController.createLoginhistory);
-router.post('/getLoginhistories', verifyToken, loginhistoryController.getLoginhistories);
-router.post('/getLoginhistoryById', verifyToken, loginhistoryController.getLoginhistoryById);
-router.post('/updateLoginhistory', verifyToken, loginhistoryController.updateLoginhistory);
-router.post('/deleteLoginhistory', verifyToken, loginhistoryController.deleteLoginhistory);
+router.post('/createLoginhistory', verifyToken, loginHistoryController.createLoginhistory);
+router.post('/getLoginhistories', verifyToken, loginHistoryController.getLoginhistories);
+router.post('/getLoginhistoryById', verifyToken, loginHistoryController.getLoginhistoryById);
+router.post('/updateLoginhistory', verifyToken, loginHistoryController.updateLoginhistory);
+router.post('/deleteLoginhistory', verifyToken, loginHistoryController.deleteLoginhistory);
 
 
 // Check if all controllers are defined
